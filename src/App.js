@@ -7,19 +7,16 @@ import ErrorPage from './pages/ErrorPage';
 
 function App() {
   return (
-   <Router>
-     <nav>
-       <Link to="/">Home</Link>
-       <Link to="/about">About</Link>
-       <Link to="/profile">Profile</Link>
-     </nav>
-     <Routes>
-       <Route path="/" element={<Home />} />
-       <Route path="/about" element={<About />} />
-       <Route path="/profile" element={<Profile />} />
-       <Route path="*" element={<ErrorPage />} />
-     </Routes>
-   </Router>
+    <Router>
+      <Routes>
+        {["/", "/home"].map((path) => (
+          <Route exact path={path} element={<Home />} />
+        ))}
+        <Route path="/about" exact element={<About />} />
+        <Route path="/profile" exact element={<Profile />} />
+        <Route exact path="*" element={<ErrorPage />} />
+      </Routes>
+    </Router>
   );
 }
 export default App;
